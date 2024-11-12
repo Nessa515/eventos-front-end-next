@@ -1,5 +1,5 @@
 'use client';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function EventosPage(){
 
@@ -13,7 +13,7 @@ export default function EventosPage(){
     await fetch('http://localhost:3000/eventos')
     .then((response) => {
       if(!response.ok){
-        throw new Error('Não foi possível obter os dados')
+        throw new Error('Erro ao listar os eventos!')
       }
       return response.json()
     })
@@ -29,19 +29,24 @@ export default function EventosPage(){
             <h1 className="text-2xl">Listagem de eventos</h1>
             {setLoading && <div className="bg-yellow-200 text-zinc-900 p-2">Carregando...</div>}
             {error && <div className="bg-red-500 p-2">{error.toString()}</div>}
+            {eventos.length == 0 && !loading && !error && <div className="bg-blue-500 p-2">Não existem eventos cadastrados!</div>}
             {eventos.length > 0 &&
             <table>
+              <thead>
                 <tr>
                     <th>Id</th>
                     <th>Titulo</th>
                     <th>Data</th>    
-                </tr>    
+                </tr>
+                </thead>
                 {eventos.map((e) => (
+                  <tbody>
                     <tr key={e.id}>
                         <td>{e.id}</td>
                         <td>{e.titulo}</td>
                         <td>{e.data}</td>
                     </tr>
+                  </tbody>
                 ))}
             </table>}
         </div>
