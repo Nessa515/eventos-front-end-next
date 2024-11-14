@@ -29,9 +29,13 @@ export default function EventosPage(){
     return (
         <div className="m-4">
             <h1 className="text-2xl">Listagem de eventos</h1>
+            
             {isLoading && <div className="bg-yellow-200 text-zinc-900 p-2">Carregando...</div>}
+
             {error && <div className="bg-red-500 p-2">{error.toString()}</div>}
+
             {eventos.length == 0 && !isLoading && !error && <div className="bg-blue-500 p-2">Não existem eventos cadastrados!</div>}
+
             {eventos.length > 0 &&
             <table>
               <thead>

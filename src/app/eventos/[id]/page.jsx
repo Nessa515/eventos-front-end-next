@@ -31,15 +31,18 @@ export default function EventosPorId({ params }){
     return (
         <div>
           {isLoading && <div className="bg-yellow-200 text-zinc-900 p-2">Carregando...</div>}
-            {error && <div className="bg-red-500 p-2">{error.toString()}</div>}
-            {evento == null && !isLoading && !error && <div className="bg-blue-500 p-2">Não existem eventos cadastrados!</div>}
-            {evento &&
-              <div className='m-2 p-2 border'>
-                <div>{evento.id}</div>
-                <div>{evento.titulo}</div>
-                <div>{evento.data}</div>
-              </div>
-            }
+
+          {error && <div className="bg-red-500 p-2">{error.toString()}</div>}
+
+          {evento == null && !isLoading && !error && <div className="bg-blue-500 p-2">Não existem eventos cadastrados!</div>}
+          
+          {evento &&
+            <div className='m-2 p-2 border'>
+              <div>{evento.id}</div>
+              <div>{evento.titulo}</div>
+              <div>{evento.data}</div>
+            </div>
+          }
         </div>
     )
 }
